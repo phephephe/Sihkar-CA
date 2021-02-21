@@ -1,0 +1,13 @@
+---
+- name: Remove CA
+  import_tasks: remove_ca.yml
+  when: remove_ca_enabled
+
+- name: Install needed Software
+  import_tasks: packet.yml
+
+- name: Make CA dirs
+  import_tasks: create_ca_dirs.yml
+
+- name: Generate CA keys, CSR and Certificate
+  import_tasks: generate_ca.yml

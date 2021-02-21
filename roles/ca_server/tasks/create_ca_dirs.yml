@@ -1,0 +1,48 @@
+---
+- name: Create CA Directory - Main
+  ansible.builtin.file:
+    path: "{{ ca_path }}"
+    state: 'directory'
+    mode: '711'
+    owner: 'root'
+    group: 'root'
+    recurse: 'yes'
+  become: yes
+
+- pause:
+
+- name: Create CA Directory - CSR
+  ansible.builtin.file:
+    path: "{{ ca_path }}/csr"
+    state: 'directory'
+    mode: '711'
+    owner: 'root'
+    group: 'root'
+  become: yes
+
+- name: Create CA Directory - Private Key
+  ansible.builtin.file:
+    path: "{{ ca_path }}/keys"
+    state: 'directory'
+    mode: '711'
+    owner: 'root'
+    group: 'root'
+  become: yes
+
+- name: Create CA Directory - CA Certificates
+  ansible.builtin.file:
+    path: "{{ ca_path }}/ca_certificates"
+    state: 'directory'
+    mode: '711'
+    owner: 'root'
+    group: 'root'
+  become: yes
+
+- name: Create CA Directory - Certificates
+  ansible.builtin.file:
+    path: "{{ ca_path }}/certificates"
+    state: 'directory'
+    mode: '711'
+    owner: 'root'
+    group: 'root'
+  become: yes

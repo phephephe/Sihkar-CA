@@ -1,0 +1,61 @@
+---
+- name: Get list of  supported openssl ciphers
+  command: 'openssl list -cipher-algorithms'
+  register: openssl_cipher_response
+
+- name: If defined cipher is not supported by the openssl Fail
+  fail:
+    msg: "Openssl in the target does not support the selected {{ openssl_cipher }} cipher"
+  when: "not openssl_cipher in openssl_cipher_response.stdout_lines and not 'auto' in openssl_cipher"
+    
+- name: Generate CA Private Key
+  community.crypto.openssl_privatekey:
+    backup: 'yes'
+    cipher: "{{ openssl_cipher }}"
+    force: 'no'
+    format: 'pkcs8'
+    format_mismatch: 'convert'
+    passphrase: 'test'
+    path: "{{ ca_path }}/keys/ca_key_pkcs8.key"
+    regenerate: 'never'
+    return_content: 'no'
+    state: 'present' 
+    type: 'RSA'
+    size: '4096'
+    mode: '600'
+    owner: 'root'
+    group: 'root'
+    select_crypto_backend: 'cryptography'
+  become: yes  
+
+#- name: Generate CA CSR
+#  openssl_csr:
+#    authority_cert_serial_number:
+#    backup: 'no'
+#    basic_constraints: 'CA:TRUE'
+#    basic_constraints_critical: 'yes'
+#    common_name: "{{ ca_name }}"
+#    country_name: "{{ ca_country }}"
+#    create_subject_key_identifier: 'yes'
+#    digest: 'sha512'
+#    force: 'no'
+#    key_usage:
+#      - keyCertSign
+#      - digitalSignature
+#      - cRLSign
+#    key_usage_critical: 'yes'
+#    organization_name: "{{ ca_organization_name }}"
+#    path: "{{ ca_path }}/csr"
+#    privatekey_passphrase: 'test'
+#    privatekey_path: "{{ ca_path }}/keys/ca_key_pkcs8.key"
+#    return_content: 'no'
+#    use_common_name_for_san: yes'
+#    state: 'present'
+#    mode: '600'
+#    owner: 'root'
+#    group: 'root'
+#  become: yes    
+#- name: Generate Self Signed Certificate for the CA
+#  openssl_certificate:
+      
+

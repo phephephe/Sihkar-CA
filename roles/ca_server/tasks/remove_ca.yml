@@ -1,0 +1,8 @@
+---
+- name: Remove CA
+  file:
+    path: "{{ ca_path }}"
+    state: 'absent'
+  become: yes
+  when: remove_ca_enabled
+  

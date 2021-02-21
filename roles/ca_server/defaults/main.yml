@@ -1,0 +1,17 @@
+# Path to CA dir
+ca_path: '/usr/local/share/sihkarca'
+
+# Remove exsisting CA
+# true = remove
+remove_ca_enabled: false
+
+# Name of the CA (on cert)
+ca_name: 'DevCA'
+# Country 
+ca_country: 'FI'
+# Organization
+ca_organization_name: 'Dev'
+
+# Private key encryption cipher
+# use auto value
+openssl_cipher: 'auto'
