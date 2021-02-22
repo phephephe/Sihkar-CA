@@ -3,7 +3,10 @@ ca_path: '/usr/local/share/sihkarca'
 
 # Remove exsisting CA
 # true = remove
-remove_ca_enabled: false
+remove_ca_enabled: true
+
+# CA's private key password
+ca_private_key_password: "{{ vault_ca_private_key_password }}"
 
 # Name of the CA (on cert)
 ca_name: 'DevCA'

@@ -9,8 +9,6 @@
     recurse: 'yes'
   become: yes
 
-- pause:
-
 - name: Create CA Directory - CSR
   ansible.builtin.file:
     path: "{{ ca_path }}/csr"
