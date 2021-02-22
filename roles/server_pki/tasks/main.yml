@@ -1,0 +1,13 @@
+---
+- name: Remove Server PKI
+  import_tasks: remove.yml
+  when: remove_pki_enabled
+
+- name: Install needed Software
+  import_tasks: packet.yml
+
+- name: Make Server PKI dirs
+  import_tasks: create_dirs.yml
+
+- name: Generate Server keys and CSR
+  import_tasks: generate_keys_csr.yml

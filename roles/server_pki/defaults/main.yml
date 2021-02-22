@@ -1,0 +1,23 @@
+# Path to CA dir
+pki_path: '/usr/local/share/server_pki'
+
+# Group name
+pki_user_group: 'pki'
+
+# Remove exsisting CA
+# true = remove
+remove_pki_enabled: true
+
+# CA's private key password
+server_pki_private_key_password: "{{ vault_server_pki_private_key_password }}"
+
+# Name of the CA (on cert)
+fqdn: "{{ inventory_hostname}}.test.moon"
+cert_name: '{{ fqdn }}'
+# Country 
+cert_country: 'FI'
+# Organization
+cert_organization_name: 'Dev'
+
+# Default subject alt name
+default_subject_alt_name: true

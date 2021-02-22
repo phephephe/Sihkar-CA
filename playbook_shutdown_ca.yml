@@ -1,0 +1,7 @@
+- hosts: ca
+  gather_facts: no
+  tasks:
+    - name: Lets Shutdown CA 
+      include_role: 
+        name: ca_server
+        tasks_from: server_shutdown.yml

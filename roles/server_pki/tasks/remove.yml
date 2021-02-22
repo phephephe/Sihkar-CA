@@ -1,0 +1,8 @@
+---
+- name: Remove Server PKI
+  file:
+    path: "{{ pki_path }}"
+    state: 'absent'
+  become: yes
+  when: remove_pki_enabled
+  

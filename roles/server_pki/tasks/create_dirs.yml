@@ -1,0 +1,37 @@
+---
+- name: Create User Group for PKI
+  group:
+    name: "{{ pki_user_group }}" 
+    state: 'present'
+  become: yes
+
+- name: Create PKI Directory - Main
+  ansible.builtin.file:
+    path: "{{ pki_path }}"
+    state: 'directory'
+    mode: '751'
+    owner: 'root'
+    group: "{{ pki_user_group }}"
+    recurse: 'yes'
+  become: yes
+
+- name: Create PKI Directory - CSR
+  ansible.builtin.file:
+    path: "{{ pki_path }}/csr"
+    state: 'directory'
+    mode: '751'
+    owner: 'root'
+    group: "{{ pki_user_group }}"
+  become: yes
+
+- name: Create PKI Directory - The Server
+  ansible.builtin.file:
+    path: "{{ pki_path }}/{{ cert_name }}"
+    state: 'directory'
+    mode: '751'
+    owner: 'root'
+    group: "{{ pki_user_group }}"
+  become: yes
+
+
+

@@ -4,3 +4,10 @@
     - name: Create CA
       import_role:
         name: ca_server
+
+- hosts: all
+  gather_facts: true
+  tasks:
+    - name: Create Server PKI
+      import_role:
+        name: server_pki      

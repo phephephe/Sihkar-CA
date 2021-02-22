@@ -1,0 +1,4 @@
+---
+- name: Shutdown CA Server
+  community.general.shutdown:
+    delay: 60

@@ -1,0 +1,58 @@
+---
+- name: Generate Server Private Key
+  community.crypto.openssl_privatekey:
+    backup: 'yes'
+    cipher: "auto"
+    force: 'no'
+    format: 'pkcs8'
+    format_mismatch: 'convert'
+    passphrase: "{{ server_pki_private_key_password }}"
+    path: "{{ pki_path }}/{{ cert_name }}/server_pkcs8.key"
+    regenerate: 'never'
+    return_content: 'no'
+    state: 'present' 
+    type: 'RSA'
+    size: '4096'
+    mode: '660'
+    owner: 'root'
+    group: "{{ pki_user_group }}"
+    select_crypto_backend: 'cryptography'
+  #no_log: 'yes'
+  become: yes 
+
+- name: Generate Server CSR
+  community.crypto.openssl_csr:
+    backup: 'yes'
+    common_name: "{{ cert_name }}"
+    country_name: "{{ cert_country }}"
+    create_subject_key_identifier: 'yes'
+    digest: 'sha512'
+    force: 'no'
+    key_usage:
+      - digitalSignature
+      - keyAgreement
+      - nonRepudiation
+      - keyEncipherment
+      - dataEncipherment
+    extended_key_usage:
+      - serverAuth
+      - clientAuth
+      - codeSigning
+      - emailProtection
+      - timeStamping
+    key_usage_critical: 'yes'
+    organization_name: "{{ cert_organization_name }}"
+    path: "{{ pki_path }}/csr/server.csr"
+    privatekey_passphrase: "{{ server_pki_private_key_password }}"
+    privatekey_path: "{{ pki_path }}/{{ cert_name }}/server_pkcs8.key"
+    return_content: 'no'
+    subject_alt_name: "DNS:{{ cert_name }}"
+    use_common_name_for_san: 'yes'
+    state: 'present'
+    mode: '600'
+    owner: 'root'
+    group: 'root'
+  #no_log: 'yes'
+  become: yes   
+  when: default_subject_alt_name
+
