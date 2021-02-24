@@ -58,9 +58,4 @@
 
 - name: Mount the encrypted dir
   import_tasks: mount.yml
-
-- pause:
-
-- name: UnMount the encrypted dir
-  import_tasks: unmount.yml
      
