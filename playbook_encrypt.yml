@@ -1,6 +1,0 @@
-- hosts: ca
-  gather_facts: true
-  tasks:
-    - name: Create Encrypted Dir
-      import_role:
-        name: dir_crypt   

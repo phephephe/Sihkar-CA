@@ -1,0 +1,11 @@
+- hosts: ca
+  gather_facts: true
+  tasks:
+    - set_fact:
+        encrypted_dir: "{{ ca_path}}.crypt"
+        vault_dir: "{{ ca_path }}"
+        vault_passwd: "{{ vault_ca_private_key_password }}"
+    - name: Mount the encrypted dir
+      include_role: 
+        name: dir_crypt
+        tasks_from: mount.yml 

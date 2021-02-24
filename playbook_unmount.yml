@@ -1,0 +1,12 @@
+- import_playbook: playbook_unmount.yml
+
+- hosts: ca
+  gather_facts: true
+  tasks:
+    - set_fact:
+        encrypted_dir: "{{ ca_path}}.crypt"
+        vault_dir: "{{ ca_path }}"
+    - name: Unmount the encrypted dir
+      include_role: 
+        name: dir_crypt
+        tasks_from: umount.yml 
