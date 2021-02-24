@@ -1,6 +1,17 @@
 ---
+# Why? By adding one extra layer for projecting the private key
+- set_fact:
+    encrypted_dir: "{{ ca_path}}.crypt"
+    vault_dir: "{{ ca_path }}"
+    vault_passwd: "{{ vault_ca_private_key_password }}"
+
+- name: Lets Encrypt make encrypted directory
+  include_role: 
+    name: dir_crypt
+    tasks_from: main.yml
+
 - name: Create CA Directory - Main
-  ansible.builtin.file:
+  file:
     path: "{{ ca_path }}"
     state: 'directory'
     mode: '711'
@@ -10,7 +21,7 @@
   become: yes
 
 - name: Create CA Directory - CSR
-  ansible.builtin.file:
+  file:
     path: "{{ ca_path }}/csr"
     state: 'directory'
     mode: '711'
@@ -19,7 +30,7 @@
   become: yes
 
 - name: Create CA Directory - Private Key
-  ansible.builtin.file:
+  file:
     path: "{{ ca_path }}/keys"
     state: 'directory'
     mode: '711'
@@ -28,7 +39,7 @@
   become: yes
 
 - name: Create CA Directory - CA Certificates
-  ansible.builtin.file:
+  file:
     path: "{{ ca_path }}/ca_certificates"
     state: 'directory'
     mode: '711'
@@ -37,7 +48,7 @@
   become: yes
 
 - name: Create CA Directory - Certificates
-  ansible.builtin.file:
+  file:
     path: "{{ ca_path }}/certificates"
     state: 'directory'
     mode: '711'

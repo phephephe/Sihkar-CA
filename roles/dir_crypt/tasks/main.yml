@@ -1,0 +1,66 @@
+---
+- name: Install needed Software
+  import_tasks: packet.yml
+
+- name: "Check if {{ encrypted_dir}} existis"
+  stat:
+    path: '{{ encrypted_dir }}'
+  register: stat_result
+  become: yes
+
+- debug:
+    var: stat_result.stat.exists
+
+- name: Make {{ encrypted_dir}}
+  ansible.builtin.file:
+    path: "{{ encrypted_dir }}"
+    state: 'directory'
+    mode: '711'
+    owner: 'root'
+    group: 'root'
+    recurse: 'yes'
+  become: yes
+  when: not stat_result.stat.exists
+
+- name: "Check if {{ vault_dir }} existis"
+  stat:
+    path: '{{ vault_dir }}'
+  register: stat_result_vault_dir
+  become: yes
+
+- debug:
+    var: stat_result_vault_dir.stat.exists
+
+- name: Make {{ vault_dir }}
+  ansible.builtin.file:
+    path: "{{ vault_dir }}"
+    state: 'directory'
+    mode: '711'
+    owner: 'root'
+    group: 'root'
+    recurse: 'yes'
+  become: yes
+  when: not stat_result_vault_dir.stat.exists
+
+- name: "Check if gocryptfs.diriv exists on encrypted dir {{ encrypted_dir}}"
+  stat:
+    path: '{{ encrypted_dir }}/gocryptfs.diriv'
+  register: stat_result_gocryptfs_diriv
+  become: yes
+
+- debug:
+    var: stat_result_gocryptfs_diriv.stat.exists
+ 
+- name: Init the encrypted dir
+  shell: 'echo "{{ vault_passwd }}" | gocryptfs --init {{ encrypted_dir}}'
+  become: yes
+  when: not stat_result_gocryptfs_diriv.stat.exists
+
+- name: Mount the encrypted dir
+  import_tasks: mount.yml
+
+- pause:
+
+- name: UnMount the encrypted dir
+  import_tasks: unmount.yml
+     

@@ -1,0 +1,16 @@
+---
+- name: Check for already mounted encrypted drive
+  shell: grep '{{ encrypted_dir}} {{ vault_dir }} fuse.gocryptfs' /etc/mtab
+  register: mtab_gocryptfs
+  failed_when: false
+  changed_when: false
+  become: yes
+
+- debug:
+   var: mtab_gocryptfs 
+
+- name: UnMount the encrypted dir
+  shell: 'fusermount -u {{ vault_dir }}'
+  become: yes
+  when: mtab_gocryptfs.stdout_lines != ''
+  loop: "{{ mtab_gocryptfs.stdout_lines }}"

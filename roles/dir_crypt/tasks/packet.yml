@@ -1,0 +1,9 @@
+
+- name: Install basic software packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: 
+    - gocryptfs
+    - fuse
+  become: yes
