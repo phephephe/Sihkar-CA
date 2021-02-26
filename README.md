@@ -1,2 +1,2 @@
 # Sihkar-CA
-Very small, simple and sure CA using Ansible.
+Very small, simple and 'sure' CA using Ansible.

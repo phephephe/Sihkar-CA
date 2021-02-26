@@ -1,0 +1,9 @@
+---
+- name: Get CSR from the Server to the CA
+  import_tasks: get_csr.yml
+
+- name: Get CSR from the Server to the CA
+  import_tasks: certify.yml
+
+- name: Get Certificate from CA and copy it to the Server
+  import_tasks: get_cert.yml  

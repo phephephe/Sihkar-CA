@@ -35,7 +35,7 @@
   ansible.builtin.file:
     path: "{{ vault_dir }}"
     state: 'directory'
-    mode: '711'
+    mode: '755'
     owner: 'root'
     group: 'root'
     recurse: 'yes'

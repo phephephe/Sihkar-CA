@@ -19,7 +19,7 @@
   ansible.builtin.file:
     path: "{{ pki_path }}/csr"
     state: 'directory'
-    mode: '751'
+    mode: '755'
     owner: 'root'
     group: "{{ pki_user_group }}"
   become: yes

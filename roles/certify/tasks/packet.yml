@@ -1,0 +1,8 @@
+- name: Install basic software packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: 
+    - openssl  
+    - python3-cryptography
+  become: yes

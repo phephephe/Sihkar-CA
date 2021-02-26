@@ -1,0 +1,23 @@
+---
+- name: Create Ansible Master PKI temp directory
+  file:
+    path: "{{ pki_temp_cert }}"
+    state: 'directory'
+    mode: '711'
+  delegate_to: '127.0.0.1'
+
+- name: Get CSR from the Server to Ansible Controller
+  fetch:
+    src: "{{ cert_file }}"
+    dest: "{{ pki_temp_cert }}/{{ inventory_hostname }}.crt"
+    flat: yes
+  delegate_to: "{{ hostvars['ca'].ansible_host }}"  
+  
+- name: Copy CSR file from Ansible Controller to the CA
+  copy:
+    src: "{{ pki_temp_cert }}/{{ inventory_hostname }}.crt"
+    dest: "{{ pki_path }}/{{ cert_name }}/server.crt"
+    owner: 'root'
+    group: "{{ pki_user_group }}"
+    mode: '650'
+  become: yes

@@ -1,0 +1,32 @@
+---
+- name: Remove Ansible Master PKI temp directory
+  file:
+    path: "{{ pki_temp }}/{{ inventory_hostname }}.csr"
+    state: 'absent'
+  delegate_to: '127.0.0.1'
+- name: Create Ansible Master PKI temp directory
+  file:
+    path: "{{ pki_temp }}"
+    state: 'directory'
+    mode: '711'
+  delegate_to: '127.0.0.1'
+
+- name: Get CSR from the Server to Ansible Controller
+  fetch:
+    src: "{{ csr_file }}"
+    dest: "{{ pki_temp }}/{{ inventory_hostname }}.csr"
+    flat: yes
+
+- name: Copy CSR file from Ansible Controller to the CA
+  copy:
+    src: "{{ pki_temp }}/{{ inventory_hostname }}.csr"
+    dest: "{{ ca_path }}/csr/{{ inventory_hostname }}.csr"
+    owner: 'root'
+    group: 'root'
+    mode: '600'
+  delegate_to: "{{ hostvars['ca'].ansible_host }}"
+  become: yes
+
+
+
+  

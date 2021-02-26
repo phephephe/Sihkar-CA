@@ -49,10 +49,10 @@
     subject_alt_name: "DNS:{{ cert_name }}"
     use_common_name_for_san: 'yes'
     state: 'present'
-    mode: '600'
+    mode: '644'
     owner: 'root'
     group: 'root'
-  #no_log: 'yes'
+  no_log: 'yes'
   become: yes   
   when: default_subject_alt_name
 

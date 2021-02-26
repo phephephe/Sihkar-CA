@@ -49,7 +49,7 @@
 
 - name: Create CA Directory - Certificates
   file:
-    path: "{{ ca_path }}/certificates"
+    path: "{{ ca_path_public }}/certificates"
     state: 'directory'
     mode: '711'
     owner: 'root'
