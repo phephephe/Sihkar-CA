@@ -3,7 +3,7 @@
 # openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt
 
 - name: Lets make PKCS#12 file out of the pkcs#8, cert and CA cert files
-  shell: "openssl pkcs12 -export -out '{{ pki_path }}/{{ cert_name }}/server_pkcs8.key' -passin 'pass:{{ server_pki_private_key_password }}' -in '{{ pki_path }}/{{ cert_name }}/server.crt' -certfile '{{ ca_path_public }}/certificates/ca_{{ ca_name }}.crt' -passout 'pass:{{ server_pki_private_key_password }}'"
+  shell: "openssl pkcs12 -export -out '{{ pki_path }}/{{ cert_name }}/server.p12' -inkey '{{ pki_path }}/{{ cert_name }}/server_pkcs8.key' -passin pass:'{{ server_pki_private_key_password }}' -in '{{ pki_path }}/{{ cert_name }}/server.crt' -certfile '{{ pki_path }}/{{ cert_name }}/ca.crt' -password pass:'{{ server_pki_private_key_password }}'"
   become: yes
 
 #PKCS#1PKCS

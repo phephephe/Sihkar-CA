@@ -7,3 +7,6 @@
 
 - name: Get Certificate from CA and copy it to the Server
   import_tasks: get_cert.yml  
+
+- name: Convert Certs
+  import_tasks: format_certs.yml  
