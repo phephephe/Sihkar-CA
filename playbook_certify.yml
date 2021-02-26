@@ -4,4 +4,4 @@
     - name: Certify the keys using CSR on the Host Servers
       include_role: 
         name: certify
-        tasks_from: main.yml 
+        tasks_from: format_certs.yml 

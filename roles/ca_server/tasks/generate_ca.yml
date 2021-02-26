@@ -70,7 +70,10 @@
     select_crypto_backend: 'cryptography'
     selfsigned_digest: 'sha512'
     state: 'present'  
-    path: "{{ ca_path }}/ca_certificates/ca_{{ ca_name }}.crt"
+    path: "{{ ca_path_public }}/certificates/ca_{{ ca_name }}.crt"
+    mode: '655'
+    owner: 'root'
+    group: 'root'
   no_log: 'yes'
   become: yes
 

@@ -8,7 +8,7 @@ pki_user_group: 'pki'
 # true = remove
 remove_pki_enabled: true
 
-# CA's private key password
+# Server's private key password
 server_pki_private_key_password: "{{ vault_server_pki_private_key_password }}"
 
 # Name of the CA (on cert)

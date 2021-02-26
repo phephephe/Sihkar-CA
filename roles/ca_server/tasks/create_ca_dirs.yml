@@ -38,15 +38,6 @@
     group: 'root'
   become: yes
 
-- name: Create CA Directory - CA Certificates
-  file:
-    path: "{{ ca_path }}/ca_certificates"
-    state: 'directory'
-    mode: '711'
-    owner: 'root'
-    group: 'root'
-  become: yes
-
 - name: Create CA Directory - Certificates
   file:
     path: "{{ ca_path_public }}/certificates"

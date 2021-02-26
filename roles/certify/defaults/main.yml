@@ -3,12 +3,14 @@ pki_path: '/usr/local/share/server_pki'
 # Locatio of Server's CSR
 csr_file: "{{ pki_path }}/csr/server.csr"
 
+
 # Path to CA dir
 ca_path: '/usr/local/share/sihkarca'
 ca_path_public: '/usr/local/share/sihkar_cert'
 
 # Location of Server Certs on CA
 cert_file: "{{ ca_path_public }}/certificates/{{ inventory_hostname }}.crt"
+ca_cert_file: "{{ ca_path_public }}/certificates/ca_{{ ca_name }}.crt"
 
 # Temp directory location on Ansible Maste
 pki_temp: '~/pki_tmp'
@@ -22,6 +24,9 @@ ca_name: 'DevCA'
 
 # CA's private key password
 ca_private_key_password: "{{ vault_ca_private_key_password }}"
+
+# Server's private key password
+server_pki_private_key_password: "{{ vault_server_pki_private_key_password }}"
 
 # Name of the CA (on cert)
 fqdn: "{{ inventory_hostname}}.test.moon"
