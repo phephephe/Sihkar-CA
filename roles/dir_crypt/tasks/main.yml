@@ -52,7 +52,7 @@
     var: stat_result_gocryptfs_diriv.stat.exists
  
 - name: Init the encrypted dir
-  shell: 'echo "{{ vault_passwd }}" | gocryptfs --init {{ encrypted_dir}}'
+  shell: "echo '{{ vault_passwd }}' | gocryptfs --init {{ encrypted_dir}}"
   become: yes
   when: not stat_result_gocryptfs_diriv.stat.exists
 

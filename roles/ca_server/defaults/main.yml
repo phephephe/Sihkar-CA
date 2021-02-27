@@ -7,7 +7,7 @@ ca_path_public: '/usr/local/share/sihkar_cert'
 remove_ca_enabled: false
 
 # CA's private key password
-ca_private_key_password: "{{  vars['vault_ca_private_key_password_'+inventory_hostname]  }}"
+ca_private_key_password: "{{  vars['vault_ca_private_key_password_'+hostvars['ca'].inventory_hostname]  }}"
 
 # Name of the CA (on cert)
 ca_name: 'DevCA'

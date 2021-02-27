@@ -4,7 +4,7 @@
     - set_fact:
         encrypted_dir: "{{ ca_path}}.crypt"
         vault_dir: "{{ ca_path }}"
-        vault_passwd: "{{ vault_ca_private_key_password }}"
+        vault_passwd: "{{  vars['vault_ca_dir_encryption_password_'+inventory_hostname]  }}"
     - name: Mount the encrypted dir
       include_role: 
         name: dir_crypt

@@ -10,6 +10,6 @@
    var: mtab_gocryptfs 
 
 - name: Mount the encrypted dir
-  shell: 'echo "{{ vault_passwd }}" | gocryptfs {{ encrypted_dir}} {{ vault_dir }}'
+  shell: "echo '{{ vault_passwd }}' | gocryptfs {{ encrypted_dir}} {{ vault_dir }}"
   become: yes
   when: mtab_gocryptfs.stdout == ''

@@ -8,7 +8,7 @@
     ownca_digest: 'sha512'
     ownca_not_after: '+730d' 
     ownca_not_before: '+0s'
-    ownca_path: "{{ ca_path }}/ca_certificates/ca_{{ ca_name }}.crt"
+    ownca_path: "{{ ca_path_public }}/certificates/ca_{{ ca_name }}.crt"
     ownca_privatekey_passphrase: "{{ ca_private_key_password }}"
     ownca_privatekey_path: "{{ ca_path }}/keys/ca_key_pkcs8.key"
     csr_path: "{{ ca_path }}/csr/{{ inventory_hostname }}.csr"
