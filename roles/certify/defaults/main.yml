@@ -23,10 +23,10 @@ pki_user_group: 'pki'
 ca_name: 'DevCA'
 
 # CA's private key password
-ca_private_key_password: "{{ vault_ca_private_key_password }}"
+ca_private_key_password: "{{  vars['vault_ca_private_key_password_'+inventory_hostname]  }}"
 
 # Server's private key password
-server_pki_private_key_password: "{{ vault_server_pki_private_key_password }}"
+server_pki_private_key_password: "{{  vars['vault_server_pki_private_key_password_'+inventory_hostname]  }}"
 
 # Name of the CA (on cert)
 fqdn: "{{ inventory_hostname}}.test.moon"

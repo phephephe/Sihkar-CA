@@ -1,4 +1,4 @@
 # Path to CA dir
 encrypted_dir: '/usr/local/share/sihkarca.crypt'
 vault_dir: '/usr/local/share/sihkarca'
-vault_passwd: "{{ vault_ca_dir_encryption_password }}"
+vault_passwd: "{{  vars['vault_ca_dir_encryption_password'+inventory_hostname]  }}"

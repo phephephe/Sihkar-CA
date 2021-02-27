@@ -9,7 +9,7 @@ pki_user_group: 'pki'
 remove_pki_enabled: true
 
 # Server's private key password
-server_pki_private_key_password: "{{ vault_server_pki_private_key_password }}"
+server_pki_private_key_password: "{{  vars['vault_server_pki_private_key_password_'+inventory_hostname]  }}"
 
 # Name of the CA (on cert)
 fqdn: "{{ inventory_hostname}}.test.moon"
