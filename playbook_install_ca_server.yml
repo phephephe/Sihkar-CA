@@ -1,0 +1,6 @@
+- hosts: pki
+  gather_facts: true
+  tasks:
+    - name: Create CA
+      import_role:
+        name: ca_server        

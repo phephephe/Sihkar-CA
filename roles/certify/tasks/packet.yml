@@ -5,4 +5,5 @@
   loop: 
     - openssl  
     - python3-cryptography
+    - python3-openssl
   become: yes

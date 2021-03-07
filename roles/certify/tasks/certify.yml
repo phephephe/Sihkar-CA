@@ -19,6 +19,6 @@
     mode: '655'
     owner: 'root'
     group: 'root'
-  #no_log: 'yes'
+  no_log: 'yes'
   become: yes
   delegate_to: "{{ hostvars['ca'].ansible_host }}"

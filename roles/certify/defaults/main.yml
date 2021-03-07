@@ -28,6 +28,12 @@ ca_private_key_password: "{{  vars['vault_ca_private_key_password_'+hostvars['ca
 # Server's private key password
 server_pki_private_key_password: "{{  vars['vault_server_pki_private_key_password_'+inventory_hostname]  }}"
 
-# Name of the CA (on cert)
+# Name on the cert)
 fqdn: "{{ inventory_hostname}}.test.moon"
 cert_name: '{{ fqdn }}'
+
+# PKCE12 frindly name
+pki_friendly_name: "{{ inventory_hostname }}"
+
+# Will target server need pkcs12 formated trust store?
+generate_pkcs12: true

@@ -1,5 +1,8 @@
 ---
 - name: Get CSR from the Server to the CA
+  import_tasks: packet.yml
+
+- name: Get CSR from the Server to the CA
   import_tasks: get_csr.yml
 
 - name: Get CSR from the Server to the CA

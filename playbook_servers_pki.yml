@@ -1,0 +1,9 @@
+- hosts: all
+  gather_facts: true
+  tasks:
+    - name: Create Server PKI
+      import_role:
+        name: server_pki     
+    - name: Certify and puts certs to Server
+      import_role:
+        name: certify         
