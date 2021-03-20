@@ -1,3 +1,4 @@
+# This play mounts the encrypted directory containing CA private key on the server
 - hosts: ca
   gather_facts: true
   tasks:

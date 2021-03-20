@@ -1,3 +1,4 @@
+# This play performs all the steps: Create CA, Private keys to the Server and gets them certificates for them.
 - hosts: pki
   gather_facts: true
   tasks:

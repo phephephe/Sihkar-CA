@@ -1,3 +1,5 @@
+# This play generates private keys on the hosts and generates CSRs.
+# This play also performs certify role that gets the CSR processed and certicates to the host
 - hosts: all
   gather_facts: true
   tasks:

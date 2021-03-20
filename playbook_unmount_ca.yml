@@ -1,5 +1,4 @@
-- import_playbook: playbook_unmount.yml
-
+# This play unmount the CA's encrypted directory
 - hosts: ca
   gather_facts: true
   tasks:

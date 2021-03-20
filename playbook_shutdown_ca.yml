@@ -1,3 +1,4 @@
+# This play shutdowns the Server containing the CA
 - hosts: ca
   gather_facts: no
   tasks:

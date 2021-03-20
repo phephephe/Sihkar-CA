@@ -1,3 +1,4 @@
+# This play is used to format the certs on the host
 - hosts: all
   gather_facts: true
   tasks:

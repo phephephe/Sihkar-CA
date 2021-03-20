@@ -5,7 +5,7 @@
     vault_dir: "{{ ca_path }}"
     vault_passwd: "{{  vars['vault_ca_dir_encryption_password_'+inventory_hostname]  }}"
 
-- name: Lets Encrypt make encrypted directory
+- name: Lets Encrypt make encrypted directory for the Private key and CSR
   include_role: 
     name: dir_crypt
     tasks_from: main.yml
@@ -38,6 +38,7 @@
     group: 'root'
   become: yes
 
+# Sertificate is installed out side of the encrypted dir in order to enable others to access them
 - name: Create CA Directory - Certificates
   file:
     path: "{{ ca_path_public }}/certificates"

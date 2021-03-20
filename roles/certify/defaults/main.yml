@@ -3,7 +3,6 @@ pki_path: '/usr/local/share/server_pki'
 # Locatio of Server's CSR
 csr_file: "{{ pki_path }}/csr/server.csr"
 
-
 # Path to CA dir
 ca_path: '/usr/local/share/sihkarca'
 ca_path_public: '/usr/local/share/sihkar_cert'

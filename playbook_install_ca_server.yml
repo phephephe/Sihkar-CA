@@ -1,3 +1,4 @@
+# This play installs the CA to the Server
 - hosts: pki
   gather_facts: true
   tasks:

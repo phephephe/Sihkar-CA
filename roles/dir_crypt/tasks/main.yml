@@ -2,7 +2,7 @@
 - name: Install needed Software
   import_tasks: packet.yml
 
-- name: "Check if {{ encrypted_dir}} existis"
+- name: "Check if {{ encrypted_dir}} exists"
   stat:
     path: '{{ encrypted_dir }}'
   register: stat_result
@@ -22,7 +22,7 @@
   become: yes
   when: not stat_result.stat.exists
 
-- name: "Check if {{ vault_dir }} existis"
+- name: "Check if {{ vault_dir }} exists"
   stat:
     path: '{{ vault_dir }}'
   register: stat_result_vault_dir
